@@ -7,6 +7,12 @@ function setup() {
 }
 
 function draw() {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+  background(255);
+=======
+>>>>>>> 2999d6d (bkp)
   background(127);
 
   push();
@@ -36,4 +42,8 @@ function ovalRadius(majorLen, minorLen, t)
 {
   return lerp(majorLen, minorLen, sin(t));
   // return (0.5*majorLen*minorLen) / sqrt(majorLen*majorLen + minorLen*minorLen);
+<<<<<<< HEAD
+=======
+>>>>>>> refs/remotes/origin/main
+>>>>>>> 2999d6d (bkp)
 }
