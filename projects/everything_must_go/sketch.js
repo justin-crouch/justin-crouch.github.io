@@ -1,51 +1,46 @@
-<<<<<<< HEAD
-function setup() {
+function setup() 
+{
   createCanvas(400, 400);
-=======
-const Engine	= Matter.Engine,
-      Runner	= Matter.Runner,
-      Bodies	= Matter.Bodies,
-      Composite = Matter.Composite;
-
-let engine = Engine.create();
-let ground = Bodies.rectangle(200, 350, 200, 50, {isStatic: true});
-let box1 = Bodies.rectangle(200, 200, 80, 80);
-
-let theta = 0;
-let thetaDelta;
-
-function setup() {
-  createCanvas(400, 400);
-
-  Composite.add(engine.world, [ground, box1]);
-  
-  let runner = Runner.create();
-  Runner.run(runner, engine);
-
-//  thetaDelta = PI / 100;
->>>>>>> ccd081564287a302e3598ec93c7b2001f4c4c897
 }
 
 function draw() {
-  background(160);
+  background(127);
+  
+  customShape([200, 200], [
+    [-3, -2],
+    [3, -2],
+    [4, -1],
+    [4, 1],
+    [3, 2],
+    [-3, 2],
+    [-4, 1],
+    [-4, -1]
+  ], 10);
 
-  push();
-    translate(200, 200);
-    rotate(theta);
-    beginShape();
-    for(let t=0; t<TWO_PI; t+=TWO_PI/6){
-      vertex(
-	100*cos(t), 80*sin(t)
-      );
-    }
-    endShape(CLOSE);
-  pop();
-
-  theta += thetaDelta;
-  if(theta > TWO_PI){
-    theta -= TWO_PI;
+  scaling += scalingDelta;
+  if(scaling > 25)
+  {
+    scaling = 25;
+    scalingDelta *= -1;
+  } else if(scaling < 5)
+  {
+    scaling = 5;
+    scalingDelta *= -1;
   }
-
-  // text();
 }
 
+function customShape(origin, points, scale=1, color='#fff')
+{
+  push();
+  translate(origin[0], origin[1]);
+  fill(color);
+  beginShape();
+
+    for(let p of points)
+    {
+      vertex(p[0]*scale, p[1]*scale);
+    }
+
+  endShape(CLOSE);
+  pop();
+}
