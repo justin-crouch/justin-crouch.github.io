@@ -1,11 +1,20 @@
+const ASPECT_RATIO = 16 / 9;
+
 function setup() 
 {
-  createCanvas(400, 400);
+  let canvasWidth = windowWidth;
+  let canvasHeight = windowWidth / ASPECT_RATIO;
+  if(canvasHeight > windowHeight)
+  {
+    canvasWidth = windowHeight * ASPECT_RATIO * 0.99;
+    canvasHeight = windowHeight * 0.99;
+  }
+  createCanvas(canvasWidth, canvasHeight);
 }
 
 function draw() {
   background(127);
-  
+ 
   customShape([200, 200], [
     [-3, -2],
     [3, -2],
@@ -16,17 +25,18 @@ function draw() {
     [-4, 1],
     [-4, -1]
   ], 10);
+}
 
-  scaling += scalingDelta;
-  if(scaling > 25)
+function windowResized()
+{
+  let canvasWidth = windowWidth;
+  let canvasHeight = windowWidth / ASPECT_RATIO;
+  if(canvasHeight > windowHeight)
   {
-    scaling = 25;
-    scalingDelta *= -1;
-  } else if(scaling < 5)
-  {
-    scaling = 5;
-    scalingDelta *= -1;
+    canvasWidth = windowHeight * ASPECT_RATIO * 0.99;
+    canvasHeight = windowHeight * 0.99;
   }
+  resizeCanvas(canvasWidth, canvasHeight);
 }
 
 function customShape(origin, points, scale=1, color='#fff')
