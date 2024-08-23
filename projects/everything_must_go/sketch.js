@@ -1,9 +1,5 @@
-let theta = 0;
-let thetaDelta;
-
 function setup() {
   createCanvas(400, 400);
-  thetaDelta = PI / 100;
 }
 
 function draw() {
