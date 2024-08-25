@@ -13,10 +13,13 @@ let engine = Engine.create();
 let boxy = Bodies.rectangle(1010, 200, 30, 30);
 let ground = Bodies.rectangle(500, 500, 1000, 30, {isStatic: true});
 
+let balls = [];
+
 function setup() 
 {
   let windowSize = getWindowSize();
   createCanvas(windowSize.width, windowSize.height);
+  frameRate(60);
 
   Composite.add(engine.world, [boxy, ground]);
 
@@ -24,11 +27,23 @@ function setup()
 }
 
 function draw() {
+  if(frameCount%60 == 0)
+  {
+    let newCircle = Bodies.circle(500, 350, 20);
+    Composite.add(engine.world, newCircle);
+    balls.push(newCircle);
+  }
+
   background(127);
   scale(WIN_SCALE);
 
   drawRectFromBody(ground, {width: 1000, height: 30});
   drawRectFromBody(boxy, {width: 30, height: 30});
+
+  for(let ball of balls)
+  {
+    drawCircleFromBody(ball, {radius: 20});
+  }
 
   customShape([200, 200], [
     [-3, -2],
@@ -62,27 +77,4 @@ function getWindowSize()
   return {'width': canvasWidth, 'height': canvasHeight};
 }
 
-function drawRectFromBody(body, size)
-{
-  push();
-  translate(body.position.x , body.position.y );
-  rotate(body.angle);
-  rect(-size.width/2, -size.height/2, size.width, size.height);
-  pop();
-}
 
-function customShape(origin, points, scale=1, color='#fff')
-{
-  push();
-  translate(origin[0], origin[1]);
-  fill(color);
-  beginShape();
-
-    for(let p of points)
-    {
-      vertex(p[0]*scale, p[1]*scale);
-    }
-
-  endShape(CLOSE);
-  pop();
-}
