@@ -62,13 +62,13 @@ function getWindowSize()
 function customShape(origin, points, scale=1, color='#fff')
 {
   push();
-  translate(origin[0], origin[1]);
+  translate(origin[0]*WIN_SCALE, origin[1]*WIN_SCALE);
   fill(color);
   beginShape();
 
     for(let p of points)
     {
-      vertex(p[0]*scale, p[1]*scale);
+      vertex(p[0]*scale*WIN_SCALE, p[1]*scale*WIN_SCALE);
     }
 
   endShape(CLOSE);
