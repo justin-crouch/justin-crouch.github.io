@@ -10,10 +10,9 @@ const Engine = Matter.Engine,
     Composite = Matter.Composite;
 
 let engine = Engine.create();
+let circleWorld = Composite.create();
 let boxy = Bodies.rectangle(1010, 200, 30, 30);
 let ground = Bodies.rectangle(500, 500, 1000, 30, {isStatic: true});
-
-let balls = [];
 
 function setup() 
 {
@@ -21,7 +20,7 @@ function setup()
   createCanvas(windowSize.width, windowSize.height);
   frameRate(60);
 
-  Composite.add(engine.world, [boxy, ground]);
+  Composite.add(engine.world, [boxy, ground, circleWorld]);
 
   Runner.run(Runner.create(), engine);
 }
@@ -30,29 +29,47 @@ function draw() {
   if(frameCount%60 == 0)
   {
     let newCircle = Bodies.circle(500 + random(3), 350 + random(3), 20);
-    Composite.add(engine.world, newCircle);
-    balls.push(newCircle);
+    Composite.add(circleWorld, newCircle);
   }
-  if(balls.length > 10)
+  if(Composite.allBodies(circleWorld).length > 10)
   {
-    Composite.remove(engine.world, balls[0]);
-    balls.shift();
+    Composite.remove(
+      circleWorld,
+      Composite.allBodies(circleWorld)[0]
+    );
   }
 
   background(127);
   scale(WIN_SCALE);
 
-  drawRectFromBody(ground, {width: 1000, height: 30});
-  drawRectFromBody(boxy, {width: 30, height: 30});
-
-  push();
-  fill(0, 255, 0);
-  for(let ball of balls)
+  for(let body of Composite.allBodies(engine.world))
   {
-    drawCircleFromBody(ball, {radius: 20});
-    fill(255);
+    if(body.label == "Rectangle Body")
+    {
+      let index0 = createVector(body.vertices[0].x, body.vertices[0].y);
+      let index1 = createVector(body.vertices[1].x, body.vertices[1].y);
+      let index3 = createVector(body.vertices[3].x, body.vertices[3].y);
+
+      let width = index0.dist(index1);
+      let height = index0.dist(index3);
+      drawRectFromBody(body, {width: width, height: height});
+    } else if(body.label == "Circle Body")
+    {
+      drawCircleFromBody(body, {radius: body.circleRadius});
+    }
   }
-  pop();
+
+//  drawRectFromBody(ground, {width: 1000, height: 30});
+//  drawRectFromBody(boxy, {width: 30, height: 30});
+
+//  push();
+//  fill(0, 255, 0);
+//  for(let ball of balls)
+//  {
+//    drawCircleFromBody(ball, {radius: 20});
+//    fill(255);
+//  }
+//  pop();
 
   customShape([200, 200], [
     [-3, -2],
