@@ -23,7 +23,8 @@
       right: 0;
     }
   </style>
-  <script src="../../libraries/p5.min.js"></script>
+
+    <script src="../../libraries/p5.min.js"></script>
   <!-- <script src="libraries/addons/p5.sound.js"></script> -->
   <script src="../../libraries/matter.min.js"></script>
   <script src="./src/draw_shapes.js"></script>
@@ -31,8 +32,25 @@
 </head>
 
 <body>
-  <main>
-  </main>
+  <script>
+    function launchFullScreen() {
+      const elem = document.documentElement;
+
+      if (elem.requestFullscreen) {
+	elem.requestFullscreen();
+      } else if (elem.mozRequestFullScreen) { /* Firefox */
+	elem.mozRequestFullScreen();
+      } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+	elem.webkitRequestFullscreen();
+      } else if (elem.msRequestFullscreen) { /* IE/Edge */
+	elem.msRequestFullscreen();
+      }
+    }
+
+    launchFullScreen();     
+  </script>
+
+  <button onclick='launchFullScreen()'>Fullscreen</button>
 </body>
 
 </html>
