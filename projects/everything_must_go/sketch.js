@@ -89,8 +89,6 @@ function draw() {
     [-4, 1],
     [-4, -1]
   ], 10);
-
-  text(deviceOrientation, 80, 80, 24);
 }
 
 function windowResized()
@@ -106,13 +104,6 @@ function keyPressed()
   if(key === 'f')
   {
     fullscreen( !fullscreen() );
-  }
-}
-function deviceTurned()
-{
-  if(deviceOrientation == 'landscape')
-  {
-    fullscreen(true);
   }
 }
 
