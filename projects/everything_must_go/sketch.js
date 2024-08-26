@@ -29,6 +29,7 @@ function draw() {
   if(frameCount%60 == 0)
   {
     let newCircle = Bodies.circle(500 + random(3), 350 + random(3), 20);
+    newCircle.color = color(random(255), random(255), random(255));
     Composite.add(circleWorld, newCircle);
   }
   if(Composite.allBodies(circleWorld).length > 10)
@@ -55,7 +56,10 @@ function draw() {
       drawRectFromBody(body, {width: width, height: height});
     } else if(body.label == "Circle Body")
     {
+      push();
+      fill(body.color);
       drawCircleFromBody(body, {radius: body.circleRadius});
+      pop();
     }
   }
 
