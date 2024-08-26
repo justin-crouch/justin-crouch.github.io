@@ -1,5 +1,5 @@
 const ASPECT_RATIO = 16 / 9;
-const BASE_WINDOW = {'width': 1080, 'height': 720};
+const BASE_WINDOW = {'width': 1280, 'height': 720};
 let   WIN_SCALE = 1;
 
 // module aliases
@@ -99,6 +99,21 @@ function windowResized()
   Mouse.setScale(mouseConstraint.mouse, Vector.create(1/WIN_SCALE, 1/WIN_SCALE));
 }
 
+function keyPressed()
+{
+  if(key === 'f')
+  {
+    fullscreen( !fullscreen() );
+  }
+}
+function deviceTurned()
+{
+  if(deviceOrientation == 'landscape')
+  {
+    fullscreen(true);
+  }
+}
+
 function getWindowSize()
 {
   let canvasWidth = windowWidth;
@@ -112,5 +127,3 @@ function getWindowSize()
 
   return {'width': canvasWidth, 'height': canvasHeight};
 }
-
-
