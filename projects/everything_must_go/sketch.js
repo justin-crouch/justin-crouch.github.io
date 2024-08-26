@@ -27,7 +27,7 @@ function setup()
   frameRate(60);
 
   let canvasMouse = Mouse.create(canvas.elt);
-//  canvasMouse.pixelRatio = 2;
+  canvasMouse.pixelRatio = pixelDensity();
   mouseConstraint = MConstraint.create(engine, {
     mouse: canvasMouse,
     constraint: {
@@ -35,6 +35,7 @@ function setup()
     }
   });
 
+  Mouse.setScale(mouseConstraint.mouse, Vector.create(1/WIN_SCALE, 1/WIN_SCALE));
   Composite.add(engine.world, [boxy, ground, circleWorld, mouseConstraint]);
 
   Runner.run(Runner.create(), engine);
@@ -95,7 +96,7 @@ function windowResized()
   let windowSize = getWindowSize();
   resizeCanvas(windowSize.width, windowSize.height);
 
-//  Mouse.setScale(mouseConstraint.mouse, Vector.create(WIN_SCALE, WIN_SCALE));
+  Mouse.setScale(mouseConstraint.mouse, Vector.create(1/WIN_SCALE, 1/WIN_SCALE));
 }
 
 function getWindowSize()
