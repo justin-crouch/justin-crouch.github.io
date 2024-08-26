@@ -20,11 +20,19 @@ let circleWorld = Composite.create();
 let boxy = Bodies.rectangle(1010, 200, 30, 30);
 let ground = Bodies.rectangle(500, 500, 1000, 30, {isStatic: true});
 
+let askFullscreen;
+
 function setup() 
 {
   let windowSize = getWindowSize();
   let canvas = createCanvas(windowSize.width, windowSize.height);
   frameRate(60);
+
+  askFullscreen = createButton("Fullscreen");
+  askFullscreen.center();
+  askFullscreen.mousePressed(toggleFullscreen);
+
+  print(askFullscreen);
 
   let canvasMouse = Mouse.create(canvas.elt);
   canvasMouse.pixelRatio = pixelDensity();
@@ -103,8 +111,13 @@ function keyPressed()
 {
   if(key === 'f')
   {
-    fullscreen( !fullscreen() );
+    toggleFullscreen();
   }
+}
+
+function deviceOrientation()
+{
+
 }
 
 function getWindowSize()
@@ -119,4 +132,10 @@ function getWindowSize()
   WIN_SCALE = canvasWidth / BASE_WINDOW.width;
 
   return {'width': canvasWidth, 'height': canvasHeight};
+}
+
+function toggleFullscreen()
+{
+  fullscreen( !fullscreen() );
+  askFullscreen.hide();
 }
