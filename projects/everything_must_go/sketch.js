@@ -33,6 +33,11 @@ function draw() {
     Composite.add(engine.world, newCircle);
     balls.push(newCircle);
   }
+  if(balls.length > 10)
+  {
+    Composite.remove(engine.world, balls[0]);
+    balls.shift();
+  }
 
   background(127);
   scale(WIN_SCALE);
@@ -40,10 +45,14 @@ function draw() {
   drawRectFromBody(ground, {width: 1000, height: 30});
   drawRectFromBody(boxy, {width: 30, height: 30});
 
+  push();
+  fill(0, 255, 0);
   for(let ball of balls)
   {
     drawCircleFromBody(ball, {radius: 20});
+    fill(255);
   }
+  pop();
 
   customShape([200, 200], [
     [-3, -2],
