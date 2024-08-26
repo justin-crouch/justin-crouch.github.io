@@ -7,9 +7,15 @@ const Engine = Matter.Engine,
     Render = Matter.Render,
     Runner = Matter.Runner,
     Bodies = Matter.Bodies,
-    Composite = Matter.Composite;
+    Composite = Matter.Composite,
+    MConstraint = Matter.MouseConstraint,
+    Mouse  = Matter.Mouse,
+    Constraint = Matter.Constraint,
+    Vector = Matter.Vector;
 
 let engine = Engine.create();
+let mouseConstraint; 
+
 let circleWorld = Composite.create();
 let boxy = Bodies.rectangle(1010, 200, 30, 30);
 let ground = Bodies.rectangle(500, 500, 1000, 30, {isStatic: true});
@@ -17,10 +23,19 @@ let ground = Bodies.rectangle(500, 500, 1000, 30, {isStatic: true});
 function setup() 
 {
   let windowSize = getWindowSize();
-  createCanvas(windowSize.width, windowSize.height);
+  let canvas = createCanvas(windowSize.width, windowSize.height);
   frameRate(60);
 
-  Composite.add(engine.world, [boxy, ground, circleWorld]);
+  let canvasMouse = Mouse.create(canvas.elt);
+//  canvasMouse.pixelRatio = 2;
+  mouseConstraint = MConstraint.create(engine, {
+    mouse: canvasMouse,
+    constraint: {
+      stiffness: 0.3
+    }
+  });
+
+  Composite.add(engine.world, [boxy, ground, circleWorld, mouseConstraint]);
 
   Runner.run(Runner.create(), engine);
 }
@@ -63,18 +78,6 @@ function draw() {
     }
   }
 
-//  drawRectFromBody(ground, {width: 1000, height: 30});
-//  drawRectFromBody(boxy, {width: 30, height: 30});
-
-//  push();
-//  fill(0, 255, 0);
-//  for(let ball of balls)
-//  {
-//    drawCircleFromBody(ball, {radius: 20});
-//    fill(255);
-//  }
-//  pop();
-
   customShape([200, 200], [
     [-3, -2],
     [3, -2],
@@ -91,6 +94,8 @@ function windowResized()
 {
   let windowSize = getWindowSize();
   resizeCanvas(windowSize.width, windowSize.height);
+
+//  Mouse.setScale(mouseConstraint.mouse, Vector.create(WIN_SCALE, WIN_SCALE));
 }
 
 function getWindowSize()
