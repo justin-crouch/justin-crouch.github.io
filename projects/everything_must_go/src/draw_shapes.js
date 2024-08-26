@@ -16,7 +16,8 @@ function drawCircleFromBody(body, size)
 {
   push();
   transformFromBody(body, size);
-  circle(-size.radius/2, -size.radius/2, size.radius*2);
+  circle(0, 0, size.radius*2);
+  line(0, 0, size.radius, 0);
   pop();
 }
 

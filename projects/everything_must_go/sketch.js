@@ -29,7 +29,7 @@ function setup()
 function draw() {
   if(frameCount%60 == 0)
   {
-    let newCircle = Bodies.circle(500, 350, 20);
+    let newCircle = Bodies.circle(500 + random(3), 350 + random(3), 20);
     Composite.add(engine.world, newCircle);
     balls.push(newCircle);
   }
