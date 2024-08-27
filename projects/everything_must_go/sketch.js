@@ -128,7 +128,8 @@ function keyPressed()
 
 function deviceOrientation()
 {
-
+  askFullscreen.position(0, 10);
+  askFullscreen.center('horizontal');
 }
 
 function getWindowSize()
