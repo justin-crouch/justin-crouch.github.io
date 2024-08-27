@@ -29,10 +29,11 @@ function setup()
   frameRate(60);
 
   askFullscreen = createButton("Fullscreen");
-  askFullscreen.center();
+  askFullscreen.position(0, 10);
+  askFullscreen.center('horizontal');
+  askFullscreen.style('font-size', '20px');
+  askFullscreen.style('border-radius', '10px');
   askFullscreen.mousePressed(toggleFullscreen);
-
-  print(askFullscreen);
 
   let canvasMouse = Mouse.create(canvas.elt);
   canvasMouse.pixelRatio = pixelDensity();
@@ -50,6 +51,14 @@ function setup()
 }
 
 function draw() {
+  if(fullscreen())
+  {
+    askFullscreen.hide();
+  } else
+  {
+    askFullscreen.show();
+  }
+
   if(frameCount%60 == 0)
   {
     let newCircle = Bodies.circle(500 + random(3), 350 + random(3), 20);
@@ -137,5 +146,4 @@ function getWindowSize()
 function toggleFullscreen()
 {
   fullscreen( !fullscreen() );
-  askFullscreen.hide();
 }
