@@ -114,6 +114,8 @@ function windowResized()
   resizeCanvas(windowSize.width, windowSize.height);
 
   Mouse.setScale(mouseConstraint.mouse, Vector.create(1/WIN_SCALE, 1/WIN_SCALE));
+  askFullscreen.position(0, 10);
+  askFullscreen.center('horizontal');
 }
 
 function keyPressed()
