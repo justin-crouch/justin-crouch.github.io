@@ -9,7 +9,29 @@ function drawRectFromBody(body, size)
   push();
   transformFromBody(body, size);
   rect(-size.width/2, -size.height/2, size.width, size.height);
+
+  if(body.health) drawCracksOnRect(body, size);
   pop();
+}
+
+function drawCracksOnRect(body, size)
+{
+  if(body.health <= 50)
+  {
+    randomSeed(body.id);
+    let rx = random(size.width),
+	ry = random(size.height);    
+
+    beginShape();
+      vertex(-size.width/2, -size.height/2);
+      vertex(rx, ry);
+      vertex(size.width/2, -size.height/2);
+      vertex(rx, ry);
+      vertex(size.width/2, size.height/2);
+      vertex(rx, ry);
+      vertex(-size.width/2, size.height/2);
+    endShape();
+  }
 }
 
 function drawCircleFromBody(body, size)

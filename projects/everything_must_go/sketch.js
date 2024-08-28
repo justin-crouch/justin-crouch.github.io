@@ -11,14 +11,18 @@ const Engine = Matter.Engine,
     MConstraint = Matter.MouseConstraint,
     Mouse  = Matter.Mouse,
     Constraint = Matter.Constraint,
-    Vector = Matter.Vector;
+    Vector = Matter.Vector,
+    Events = Matter.Events;
 
 let engine = Engine.create();
+Events.on(engine, 'collisionStart', onCollideStart);
+Events.on(engine, 'collisionActive', onCollideEnd);
+
 let mouseConstraint; 
 
 let circleWorld = Composite.create();
-let boxy = Bodies.rectangle(1010, 200, 30, 30);
-let ground = Bodies.rectangle(500, 500, 1000, 30, {isStatic: true});
+let boxy;
+let ground;
 
 let askFullscreen;
 
@@ -27,6 +31,12 @@ function setup()
   let windowSize = getWindowSize();
   let canvas = createCanvas(windowSize.width, windowSize.height);
   frameRate(60);
+
+  boxy = Bodies.rectangle(100, 200, 30, 30);
+  boxy.health = 100;
+  boxy.minImpact = 20;
+
+  ground = Bodies.rectangle(500, 500, 1000, 30, {isStatic: true});
 
   askFullscreen = createButton("Fullscreen");
   askFullscreen.position(0, 10);
@@ -62,8 +72,9 @@ function draw() {
   if(frameCount%60 == 0)
   {
     let newCircle = Bodies.circle(500 + random(3), 350 + random(3), 20);
-    newCircle.color = color(random(255), random(255), random(255));
-    Composite.add(circleWorld, newCircle);
+    newCircle.defColor = color(random(255), random(255), random(255));
+    newCircle.color = newCircle.defColor;
+//    Composite.add(circleWorld, newCircle);
   }
   if(Composite.allBodies(circleWorld).length > 10)
   {
@@ -90,7 +101,7 @@ function draw() {
     } else if(body.label == "Circle Body")
     {
       push();
-      fill(body.color);
+      fill(body.color || color(255));
       drawCircleFromBody(body, {radius: body.circleRadius});
       pop();
     }
@@ -149,4 +160,51 @@ function getWindowSize()
 function toggleFullscreen()
 {
   fullscreen( !fullscreen() );
+}
+
+function onCollideStart(evnt)
+{
+  for(let collision of evnt.pairs)
+  {
+    let bodyA = collision.bodyA,
+	bodyB = collision.bodyB;
+
+    bodyA.collisionVelocity = Vector.clone(bodyA.velocity);
+    bodyB.collisionVelocity = Vector.clone(bodyB.velocity);
+  }
+}
+
+function onCollideEnd(evnt)
+{
+  let collision = evnt.pairs[0];
+  for(let collision of evnt.pairs)
+  {
+    for(let body of [collision.bodyA, collision.bodyB])
+    {
+      if(!body.collisionVelocity) continue;
+
+      let momentum = getMomentum(body);
+      damageBodyFromMomentum(body, momentum);
+
+      body.collisionVelocity = NaN;
+    }
+  }
+}
+
+function getMomentum(body)
+{
+  let momentum = Vector.mult((Vector.sub(body.velocity, body.collisionVelocity)), body.mass);
+  return momentum;
+}
+
+function damageBodyFromMomentum(body, momentum)
+{
+  if(!body.health) return;
+  
+  const impact = Vector.magnitude(momentum);
+  if(impact >= body.minImpact)
+  {
+    body.health -= (impact-body.minImpact);
+  }
+  print(body.health);
 }
