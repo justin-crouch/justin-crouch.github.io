@@ -14,7 +14,10 @@ const Engine = Matter.Engine,
     Vector = Matter.Vector,
     Events = Matter.Events;
 
-let engine = Engine.create();
+let engine = Engine.create({
+  velocityIterations: 12,
+  positionIterations: 16
+});
 Events.on(engine, 'collisionStart', onCollideStart);
 Events.on(engine, 'collisionActive', onCollideEnd);
 
