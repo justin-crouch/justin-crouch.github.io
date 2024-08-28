@@ -22,7 +22,6 @@ let mouseConstraint;
 
 let circleWorld = Composite.create();
 let boxy;
-let ground;
 
 let askFullscreen;
 
@@ -34,10 +33,11 @@ function setup()
 
   boxy = Bodies.rectangle(100, 200, 30, 30, {
     health: 100,
-    minImpact: 20
+    minImpact: 180,
+    mass: 10,
+    defColor: color(0, 255, 0),
+    color: color(0, 255, 0),
   });
-
-  ground = Bodies.rectangle(500, 500, 800, 50, {isStatic: true});
 
   askFullscreen = createButton("Fullscreen");
   askFullscreen.position(0, 10);
@@ -56,7 +56,11 @@ function setup()
   });
 
   Mouse.setScale(mouseConstraint.mouse, Vector.create(1/WIN_SCALE, 1/WIN_SCALE));
-  Composite.add(engine.world, [boxy, ground, circleWorld, mouseConstraint]);
+  Composite.add(engine.world, [boxy, circleWorld, mouseConstraint]);
+
+  Composite.add(engine.world, Bodies.rectangle(640, 720, 1280, 50, {isStatic: true, color: color(255)}));
+  Composite.add(engine.world, Bodies.rectangle(0, 360, 50, 720, {isStatic: true, color: color(255)}));
+  Composite.add(engine.world, Bodies.rectangle(1280, 360, 50, 720, {isStatic: true, color: color(255)}));
 
   Runner.run(Runner.create(), engine);
 }
@@ -104,7 +108,11 @@ function draw() {
 
       let width = index0.dist(index1);
       let height = index0.dist(index3);
+     
+      push();
+      fill(body.color);
       drawRectFromBody(body, {width: width, height: height});
+      pop();
 
       if(outOfBounds) Composite.remove(engine.world, body);
     } else if(body.label == "Circle Body")
@@ -123,6 +131,15 @@ function draw() {
       pop();
 
       if(outOfBounds) Composite.remove(engine.world, body);
+    }
+
+    if(body.health)
+    {
+      push();
+      translate(body.position.x, body.position.y);
+      textSize(24);
+      text(body.health, 0, 0);
+      pop();
     }
   }
 }

@@ -6,12 +6,10 @@ function transformFromBody(body)
 
 function drawRectFromBody(body, size)
 {
-  push();
   transformFromBody(body);
   rect(-size.width/2, -size.height/2, size.width, size.height);
 
   if(body.health) drawCracksOnRect(body, size);
-  pop();
 }
 
 function drawCracksOnRect(body, size)
