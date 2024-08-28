@@ -32,11 +32,12 @@ function setup()
   let canvas = createCanvas(windowSize.width, windowSize.height);
   frameRate(60);
 
-  boxy = Bodies.rectangle(100, 200, 30, 30);
-  boxy.health = 100;
-  boxy.minImpact = 20;
+  boxy = Bodies.rectangle(100, 200, 30, 30, {
+    health: 100,
+    minImpact: 20
+  });
 
-  ground = Bodies.rectangle(500, 500, 1000, 30, {isStatic: true});
+  ground = Bodies.rectangle(500, 500, 800, 50, {isStatic: true});
 
   askFullscreen = createButton("Fullscreen");
   askFullscreen.position(0, 10);
@@ -50,7 +51,7 @@ function setup()
   mouseConstraint = MConstraint.create(engine, {
     mouse: canvasMouse,
     constraint: {
-      stiffness: 0.3
+      stiffness: 0.05
     }
   });
 
@@ -69,12 +70,17 @@ function draw() {
     askFullscreen.show();
   }
 
-  if(frameCount%60 == 0)
+  if(frameCount%60 == 0 && Composite.allBodies(circleWorld).length < 10)
   {
-    let newCircle = Bodies.circle(500 + random(3), 350 + random(3), 20);
-    newCircle.defColor = color(random(255), random(255), random(255));
-    newCircle.color = newCircle.defColor;
-//    Composite.add(circleWorld, newCircle);
+    let newColor = color(random(255), random(255), random(255));
+    let newCircle = Bodies.circle(500 + random(3), 350 + random(3), 20, {
+      defColor: newColor,
+      color: newColor,
+      health: 100,
+      minImpact: 30
+    });
+    
+    Composite.add(circleWorld, newCircle);
   }
   if(Composite.allBodies(circleWorld).length > 10)
   {
@@ -89,6 +95,7 @@ function draw() {
 
   for(let body of Composite.allBodies(engine.world))
   {
+    let outOfBounds = body.position.y > height*2;
     if(body.label == "Rectangle Body")
     {
       let index0 = createVector(body.vertices[0].x, body.vertices[0].y);
@@ -98,25 +105,26 @@ function draw() {
       let width = index0.dist(index1);
       let height = index0.dist(index3);
       drawRectFromBody(body, {width: width, height: height});
+
+      if(outOfBounds) Composite.remove(engine.world, body);
     } else if(body.label == "Circle Body")
     {
       push();
       fill(body.color || color(255));
       drawCircleFromBody(body, {radius: body.circleRadius});
       pop();
+
+      if(outOfBounds) Composite.remove(circleWorld, body);
+    } else if(body.label == "Slice Body")
+    {
+      push();
+      fill(body.color);
+      drawSlice(body);
+      pop();
+
+      if(outOfBounds) Composite.remove(engine.world, body);
     }
   }
-
-  customShape([200, 200], [
-    [-3, -2],
-    [3, -2],
-    [4, -1],
-    [4, 1],
-    [3, 2],
-    [-3, 2],
-    [-4, 1],
-    [-4, -1]
-  ], 10);
 }
 
 function windowResized()
@@ -184,9 +192,10 @@ function onCollideEnd(evnt)
       if(!body.collisionVelocity) continue;
 
       let momentum = getMomentum(body);
-      damageBodyFromMomentum(body, momentum);
-
-      body.collisionVelocity = NaN;
+      if(damageBodyFromMomentum(body, momentum))
+      {
+	fractureBody(body);
+      } else body.collisionVelocity = NaN;
     }
   }
 }
@@ -197,14 +206,45 @@ function getMomentum(body)
   return momentum;
 }
 
+function damageBody(body, amnt)
+{
+  body.health -= amnt;
+  return body.health <= 0;
+}
+
 function damageBodyFromMomentum(body, momentum)
 {
-  if(!body.health) return;
+  if(!body.health) return false;
   
   const impact = Vector.magnitude(momentum);
   if(impact >= body.minImpact)
   {
-    body.health -= (impact-body.minImpact);
+    return damageBody(body, impact-body.minImpact);
   }
-  print(body.health);
+}
+
+function fractureBody(body)
+{
+  randomSeed(body.id);
+  let rx = random(body.width),plo
+      ry = random(body.height);
+  const vertices = body.vertices;
+
+  for(let i=0; i<min(vertices.length-1, 8); i++)
+  {
+    let newSlice = Bodies.fromVertices(body.position.x, body.position.y, [
+	vertices[i],
+	Vector.create(rx+body.position.x, ry+body.position.y),
+	vertices[i+1]
+      ]);
+    newSlice.label = "Slice Body";
+    newSlice.defColor = body.defColor;
+    newSlice.color = body.color;
+    Composite.add(engine.world, newSlice);
+  }
+
+  let world = engine.world;
+  if(body.label == "Circle Body") world = circleWorld;
+
+  Composite.remove(world, body);
 }
