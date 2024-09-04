@@ -9,10 +9,14 @@ void main() {
   uv.y = 1.0 - uv.y;
 
   vec4 color = texture2D(tex, uv);
-
-  // Set each pixel's RGBA value to yellow.
-  //gl_FragColor = vec4(1.0, 1.0, 0.0, 1.0);
-  gl_FragColor = color;
+  
+  if(color.r == 0.5)
+  {
+    gl_FragColor = vec4(0.0, 1.0, 0.0, 1.0);
+  } else
+  {
+    gl_FragColor = color;
+  }
 }
 `;
 

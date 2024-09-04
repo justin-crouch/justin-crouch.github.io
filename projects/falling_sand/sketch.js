@@ -4,7 +4,7 @@ let   WIN_SCALE = 1;
 
 let askFullscreen;
 let sandbox;
-
+let buffer;
 
 function setup() 
 {
@@ -21,9 +21,14 @@ function setup()
   askFullscreen.style('border-radius', '10px');
   askFullscreen.mousePressed(toggleFullscreen);
 
+//  buffer = createFramebuffer();
+  buffer = createGraphics(BASE_WINDOW.width, BASE_WINDOW.height, WEBGL);
+  buffer.colorMode(RGB, 100);
+  buffer.pixelDensity(1);
+  buffer.noSmooth();
+
   background(127);
   sandbox = createShader(vertSrc, fragSrc);
-  shader(sandbox);
   sandbox.setUniform('normalRes', [1.0/width, 1.0/height]);
 }
 
@@ -37,8 +42,16 @@ function draw() {
   }
 
 //  scale(WIN_SCALE);
-  sandbox.setUniform('tex', get());
-  rect(-width/2, -height/2, width, height);
+  buffer.noStroke();
+  buffer.fill(100);
+  buffer.rect(-buffer.width/2, -buffer.height/2, buffer.width, buffer.height);
+
+  buffer.fill(50, 0, 0);
+  buffer.rect(50, 50, 100, 100);
+
+  shader(sandbox);
+  sandbox.setUniform('tex', buffer);
+  image(buffer, -width/2, -height/2, width, height);
 }
 
 function windowResized()
@@ -46,6 +59,7 @@ function windowResized()
   let windowSize = getWindowSize();
   resizeCanvas(windowSize.width, windowSize.height);
 
+  sandbox.setUniform('normalRes', [1.0/width, 1.0/height]);
   askFullscreen.position(0, 10);
   askFullscreen.center('horizontal');
 }
