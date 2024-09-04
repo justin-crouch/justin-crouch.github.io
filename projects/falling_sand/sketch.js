@@ -3,17 +3,11 @@ const BASE_WINDOW = {'width': 1280, 'height': 720};
 let   WIN_SCALE = 1;
 
 let askFullscreen;
-let fallingSand;
-
-function preload()
-{
-  fallingSand = loadShader('./src/shader.vert', './src/shader.frag');
-}
 
 function setup() 
 {
   let windowSize = getWindowSize();
-  let canvas = createCanvas(windowSize.width, windowSize.height, WEBGL);
+  let canvas = createCanvas(windowSize.width, windowSize.height);
   frameRate(60);
   pixelDensity(1);
   noSmooth();
@@ -25,9 +19,6 @@ function setup()
   askFullscreen.style('font-size', '20px');
   askFullscreen.style('border-radius', '10px');
   askFullscreen.mousePressed(toggleFullscreen);
-
-  shader(fallingSand);
-  fallingSand.setUniform("normalRes", [1.0/width, 1.0/height]);
 }
 
 function draw() {
@@ -41,8 +32,19 @@ function draw() {
 
   scale(WIN_SCALE);
 
-  fallingSand.setUniform('tex', get());
-  rect(-width/2, -height/2, width, height);
+  
+  loadPixels();
+  for(let i=0; i<width*height*4; i+=4)
+  {
+    pixels[i] = 0;
+    pixels[i+1] = 255;
+    pixels[i+2] = 255;
+    pixels[i+3] = 255;
+  }
+  updatePixels();
+
+  textSize(24);
+  text(int(frameRate()), 50, 50);
 }
 
 function windowResized()
