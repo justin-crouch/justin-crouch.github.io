@@ -3,15 +3,16 @@ const BASE_WINDOW = {'width': 1280, 'height': 720};
 let   WIN_SCALE = 1;
 
 let askFullscreen;
+let sandbox;
+
 
 function setup() 
 {
   let windowSize = getWindowSize();
-  let canvas = createCanvas(windowSize.width, windowSize.height);
+  let canvas = createCanvas(windowSize.width, windowSize.height, WEBGL);
   frameRate(60);
   pixelDensity(1);
   noSmooth();
-  background(127);
 
   askFullscreen = createButton("Fullscreen");
   askFullscreen.position(0, 10);
@@ -19,6 +20,11 @@ function setup()
   askFullscreen.style('font-size', '20px');
   askFullscreen.style('border-radius', '10px');
   askFullscreen.mousePressed(toggleFullscreen);
+
+  background(127);
+  sandbox = createShader(vertSrc, fragSrc);
+  shader(sandbox);
+  sandbox.setUniform('normalRes', [1.0/width, 1.0/height]);
 }
 
 function draw() {
@@ -30,21 +36,9 @@ function draw() {
     askFullscreen.show();
   }
 
-  scale(WIN_SCALE);
-
-  
-  loadPixels();
-  for(let i=0; i<width*height*4; i+=4)
-  {
-    pixels[i] = 0;
-    pixels[i+1] = 255;
-    pixels[i+2] = 255;
-    pixels[i+3] = 255;
-  }
-  updatePixels();
-
-  textSize(24);
-  text(int(frameRate()), 50, 50);
+//  scale(WIN_SCALE);
+  sandbox.setUniform('tex', get());
+  rect(-width/2, -height/2, width, height);
 }
 
 function windowResized()
