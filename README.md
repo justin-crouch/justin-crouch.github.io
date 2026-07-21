@@ -1,3 +1,8 @@
-<video width="320" height="240" controls loop="" muted="" autoplay="">
-    <source src="https://youtu.be/55Cjb-ZzvW8" />
-</video>
+<iframe
+    width="800"
+    height="450"
+    src="https://www.youtube.com/embed/55Cjb-ZzvW8"
+    title="Code Review"
+    frameborder="0"
+    allowfullscreen>
+</iframe>
