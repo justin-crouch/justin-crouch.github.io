@@ -2,7 +2,7 @@
 layout: default
 ---
 
-<div width="100%" style="display: grid; grid-template-columns: 1fr; align-items: center;">
+<div width="100%" style="display: grid; grid-template-columns: 1fr; justify-items: center;">
   <iframe 
     width="80%" 
     style="aspect-ratio: 800 / 450" 
