@@ -2,10 +2,9 @@
 layout: default
 ---
 
-<div width="100%" style="display: grid; grid-template-columns: 1fr; justify-items: center;">
+<div width="100%" max-width="360px" style="display: grid; grid-template-columns: 1fr; justify-items: center;">
   <iframe 
     width="100%"
-    max-width="360px"
     style="aspect-ratio: 800 / 450" 
     src="https://www.youtube.com/embed/55Cjb-ZzvW8" 
     title="Code Review" 
