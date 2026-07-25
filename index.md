@@ -12,3 +12,11 @@ layout: default
     allowfullscreen> 
   </iframe> 
 </div>
+
+*Self Assessment*
+
+## Software design and engineering
+
+## Algorithms and data structure
+
+## Databases
