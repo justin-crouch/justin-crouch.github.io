@@ -30,6 +30,15 @@ The planned course outcome for this enhancement, Course Outcome #4, has been met
 Learning these techniques and tools was challenging yet rewarding. Using Vue.js as the front-end framework was the most challenging as the technology was novel to me. However, while using it, I found it easier to implement UI and UX features faster than writing pure HTML, CSS, and JavaScript. 
 
 ## Algorithms and data structures
+This enhancement showcases my skills in analyzing and utilizing appropriate data structures and algorithms to provide value to users. The nature of this artifact is to efficiently allow the management of items in an inventory.
+
+However, in the original artifact, an inventory with hundreds of items can be problematic to navigate for a user since there is a lack of organization when viewing a list of these items and no search feature to ease this burden. The enhancement solves this issue by presenting items in a user’s inventory alphabetically and allows the user to search for items that begin with a specific prefix.
+
+To support the search feature, a Prefix Tree was chosen over other data structures such as a Suffix Array for its ability to add, remove, and look up items in linear time. The enhancement also allows the user to filter for items with specific categories and stock levels, thus providing more potential value to the user.
+
+The planned course outcome for this enhancement, Course Outcome #3, has been met. Multiple data structures were analyzed in their capability to search for a dynamic list of words with the smallest runtime footprint. Although Prefix Trees are identified to potentially require significant memory storage, it can be vastly reduced by collapsing certain sequences of nodes. However, this optimization is not necessary until actual user feedback indicates memory consumption as an issue.
+
+The test-driven development technique was used to develop this enhancement. Specifically, I learned how to design appropriate unit tests with the Vitest tool to guide the implementation of the Prefix Tree. The greatest challenge was integrating the Prefix Tree into the actual application, mainly due to how Vue.js binds the Model and View layers during runtime. However, using integration tests could have lowered the challenge.
 
 ## Database
 
