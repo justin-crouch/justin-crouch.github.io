@@ -41,6 +41,41 @@ The planned course outcome for this enhancement, Course Outcome #3, has been met
 The test-driven development technique was used to develop this enhancement. Specifically, I learned how to design appropriate unit tests with the Vitest tool to guide the implementation of the Prefix Tree. The greatest challenge was integrating the Prefix Tree into the actual application, mainly due to how Vue.js binds the Model and View layers during runtime. However, using integration tests could have lowered the challenge.
 
 ## Database
+The final enhancement of this artifact showcases my skills in database design and data management. The original artifact used SQLite as its database management system and defined data models so to seamlessly interact between the database and business logic. However, the original codebase was never systematically tested, meaning that its current logic could break in edge-cases or with future features.
+
+With this enhancement, the data models and business logic have associated unit tests, which reduces the likelihood of flaws currently existing or being produced in the future. Since the original artifact has been translated from an Android application to a web-based application, this enhancement utilizes a NoSQL object database management system present in all major browsers, namely IndexedDB.
+
+The planned course outcomes, Outcome #4 and Outcome #5, were met with this enhancement. The former is satisfied with the use of IndexedDB as the database management system. This is due to the enhancement requiring a tool that allows for efficient storage and retrieval of numerous items in an inventory within a web browser. 
+
+The latter is satisfied by the properties of an IndexedDB database. Data stored using this management system can only be accessed by the browser on the client’s device that originally saved this data, thereby reducing wireless attack vectors by requiring attackers to have physical access to the client’s device. Additionally, only Javascript code from the original site that the data belongs to can access this data, which prevents other sites from embedding the original site to access this data.
+
+Similar to the previous enhancement, Test-Driven Development using Vitest was utilized to produce this enhancement. Surprisingly, because this technique involves isolating code execution from an actual browser by default, the IndexedDB API was not available as it requires access to a browser’s Window interface. Two solutions were attempted to solve this issue. The first solution was to run these unit tests within an actual browser using Vitest’s browser mode. However, setting up this mode in Vitest created more issues which could not be solved in the limited time frame. The second, and chosen, solution was to emulate the IndexedDB API so it could be used independently of any browser during testing. This was made possible by installing the fake-indexeddb package, which is a Javascript implementation of IndexedDB that saves data in-memory instead of on-disk.
+
+Using face-indexeddb for testing began by first installing the package with NPM. 
+``` 
+npm install --save-dev fake-indexeddb
+```
+
+Once installed, the package was imported in the test file, which loaded the in-memory IndexedDB API into the global space for the database helper class to use.
+``` JavaScript
+// Database.spec.js
+
+// Import vitest testing classes
+import { beforeAll, it, ... } from 'vitest';
+
+// Import fake-indexeddb into the global scope
+import 'fake-indexeddb/auto';
+
+// Initialize database helper class before any test is ran
+// Helper uses global IndexedDB API populated by fake-indexeddb
+let dbHelper;
+beforeAll(() => {
+  dbHelper = new DBHelper();
+});
+
+// Begin testing database features
+it(...);
+```
 
 ## Course Outcomes
 1. Employ strategies for building collaborative environments that enable diverse audiences to support organizational decision making in the field of computer science
