@@ -2,6 +2,14 @@
 layout: default
 ---
 
+### Table of Contents
+- *[Who Am I](#who-am-i)*
+- *[Project Overview](#project-overview)*
+- *(Algorithms and Data Structures)[#algorithms-and-data-structures]*
+- *(Database)[#database]*
+- *(References)[#references]*
+
+## Who Am I
 My journey in the Computer Science program began at Louisiana Tech University in 2018. I separated from the program at the start of 2020 to pursue a calling in the United States Army. Gladly, I picked up my program again at the end of June 2024, six months after leaving the Army, and was determined to complete my degree in August of 2026.
 
 This program has brought me invaluable knowledge. To begin, Agile development has transformed not only how I develop code, but how I run my development studio and personal life as well, especially with the use of Kanban boards to plan and track tasks. When I develop software and other studio products, rapid prototyping with feedback has improved the overall quality of these products. Finally, after learning how to create UI/UX designs that actually bring value to the customer, I have been able to build better designs faster.
@@ -22,8 +30,8 @@ These skills align well with my career plans, which is to develop full-stack sof
 ## Project Overview
 This portfolio is the capstone of my Computer Science undergraduate degree at Southern New Hampshire University. It contains enhancements of an artifact from the *CS 360: Mobile Architecture and Programming*. Specifically, the artifact is an Android mobile application designed to help a fictional company in managing their warehouse inventory. Its selection was due to its full-stack development, which aligns well with my full-stack development career goal.
 
-<div width="100%" style="display: grid; grid-template-columns: 1fr; justify-items: center; margin: 0 1rem;">
-  <a href="/inventory-management" class="btn">View Project Enhancement</a>
+<div width="100%" style="display: grid; grid-template-columns: 1fr; justify-items: center; margin-top: 1rem; margin-bottom: 1rem;">
+  <a href="/inventory-management" class="btn btn-cta">View Project Enhancement</a>
 </div>
 
 The enhancements, per the requirements of my capstone, needed to satisfy five course outcomes (sourced by *CS499* at SNHU):
@@ -51,7 +59,7 @@ At a high level, the artifact has been transitioned from an Android-only applica
   </iframe> 
 </div>
 
-## Software design and engineering
+## Software Design and Engineering
 This enhancement showcases my skills in UI/UX design, code organization, and the ability to utilize industry standard tools, such as Git for version control and Vue.js for front-end development.
 
 At a consumer level, the artifact was improved in its UI and UX. Before, the artifact had a clunky and confusing UI that was only viewable on mobile Android devices. Now, the UI has a mobile-first design that supports tablet- and desktop-sized screens, whose elements can be interacted with using the keyboard for accessibility.
@@ -62,7 +70,7 @@ The planned course outcome for this enhancement, Course Outcome #4, has been met
 
 Learning these techniques and tools was challenging yet rewarding. Using Vue.js as the front-end framework was the most challenging as the technology was novel to me. However, while using it, I found it easier to implement UI and UX features faster than writing pure HTML, CSS, and JavaScript. 
 
-## Algorithms and data structures
+## Algorithms and Data Structures
 This enhancement showcases my skills in analyzing and utilizing appropriate data structures and algorithms to provide value to users. The nature of this artifact is to efficiently allow the management of items in an inventory.
 
 However, in the original artifact, an inventory with hundreds of items can be problematic to navigate for a user since there is a lack of organization when viewing a list of these items and no search feature to ease this burden. The enhancement solves this issue by presenting items in a user’s inventory alphabetically and allows the user to search for items that begin with a specific prefix.
@@ -90,7 +98,7 @@ npm install --save-dev fake-indexeddb
 ```
 
 Once installed, the package was imported in the test file, which loaded the in-memory IndexedDB API into the global space for the database helper class to use.
-``` JavaScript
+```js
 // Database.spec.js
 
 // Import vitest testing classes
