@@ -2,6 +2,10 @@
 layout: default
 ---
 
+<div width="100%" style="display: grid; grid-template-columns: 1fr; justify-items: center; margin: 0 1rem;">
+  <a href="/inventory-management" class="btn">View Project Enhancement</a>
+</div>
+
 My journey in the Computer Science program began at Louisiana Tech University in 2018. I separated from the program at the start of 2020 to pursue a calling in the United States Army. Gladly, I picked up my program again at the end of June 2024, six months after leaving the Army, and was determined to complete my degree in August of 2026.
 
 This program has brought me invaluable knowledge. To begin, Agile development has transformed not only how I develop code, but how I run my development studio and personal life as well, especially with the use of Kanban boards to plan and track tasks. When I develop software and other studio products, rapid prototyping with feedback has improved the overall quality of these products. Finally, after learning how to create UI/UX designs that actually bring value to the customer, I have been able to build better designs faster.
@@ -22,9 +26,9 @@ These skills align well with my career plans, which is to develop full-stack sof
 ## Project Overview
 This portfolio contains enhancements of an artifact from the *CS 360: Mobile Architecture and Programming* course at SNHU. Specifically, the artifact is an Android mobile application designed to help a fictional company in managing their warehouse inventory. Its selection was due to its full-stack development, which aligns well with my full-stack development career goal.
 
-At a high level, the artifact has been transitioned from an Android-only application to a web-based application. Not only was the technology stack updated to support this change, but the software architecture was improved as well. Usability features, such as searching for specific items in the inventory, has been integrated into the project as well. A review of the artifact and its planned enhancements can be viewed in the video below.
+At a high level, the artifact has been transitioned from an Android-only application to a web-based application. Not only was the technology stack updated to support this change, but the software architecture was improved as well. Usability features, such as searching for specific items in the inventory, has been integrated into the project, which were lacking in the original artifact. A review of the artifact and its planned enhancements can be viewed in the video below.
 
-<div width="100%" style="display: grid; grid-template-columns: 1fr; justify-items: center;">
+<div width="100%" style="display: grid; grid-template-columns: 1fr; justify-items: center; margin: 0 1rem;">
   <iframe 
     width="80%"
     style="aspect-ratio: 800 / 450; max-width: 600px;"
