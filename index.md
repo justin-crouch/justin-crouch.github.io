@@ -19,6 +19,10 @@ With my enhancements, I aim to demonstrate the following diverse set of skills t
 
 These skills align well with my career plans, which is to develop full-stack software systems for clients. Effective communication with clients is critical for any business. Thus, the ability to present and explain their product in a manner that is understandable will result in efficient business decisions. Embedding security within a client’s product will ensure trust with the client and protect their end users. Attracting and retaining end users to a client’s product can best be done using UI and UX techniques, as well as using appropriate technical tools for specific problems.
 
+## Project Overview
+This portfolio contains enhancements of an artifact from the *CS 360: Mobile Architecture and Programming* course at SNHU. Specifically, the artifact is an Android mobile application designed to help a fictional company in managing their warehouse inventory. Its selection was due to its full-stack development, which aligns well with my full-stack development career goal.
+
+At a high level, the artifact has been transitioned from an Android-only application to a web-based application. Not only was the technology stack updated to support this change, but the software architecture was improved as well. Usability features, such as searching for specific items in the inventory, has been integrated into the project as well. A review of the artifact and its planned enhancements can be viewed in the video below.
 
 <div width="100%" style="display: grid; grid-template-columns: 1fr; justify-items: center;">
   <iframe 
@@ -30,9 +34,6 @@ These skills align well with my career plans, which is to develop full-stack sof
     allowfullscreen> 
   </iframe> 
 </div>
-
-## Artifact
-The artifact is from the CS 360: Mobile Architecture and Programming course. Specifically, this artifact is an Android mobile application designed to help a fictional company in managing their warehouse inventory. The artifact was selected due to its full-stack development, which aligns well with my full-stack development career goal.
 
 ## Software design and engineering
 This enhancement showcases my skills in UI/UX design, code organization, and the ability to utilize industry standard tools, such as Git for version control and Vue.js for front-end development.
