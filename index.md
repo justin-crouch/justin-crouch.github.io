@@ -2,10 +2,6 @@
 layout: default
 ---
 
-<div width="100%" style="display: grid; grid-template-columns: 1fr; justify-items: center; margin: 0 1rem;">
-  <a href="/inventory-management" class="btn">View Project Enhancement</a>
-</div>
-
 My journey in the Computer Science program began at Louisiana Tech University in 2018. I separated from the program at the start of 2020 to pursue a calling in the United States Army. Gladly, I picked up my program again at the end of June 2024, six months after leaving the Army, and was determined to complete my degree in August of 2026.
 
 This program has brought me invaluable knowledge. To begin, Agile development has transformed not only how I develop code, but how I run my development studio and personal life as well, especially with the use of Kanban boards to plan and track tasks. When I develop software and other studio products, rapid prototyping with feedback has improved the overall quality of these products. Finally, after learning how to create UI/UX designs that actually bring value to the customer, I have been able to build better designs faster.
@@ -24,11 +20,27 @@ With my enhancements, I aim to demonstrate the following diverse set of skills t
 These skills align well with my career plans, which is to develop full-stack software systems for clients. Effective communication with clients is critical for any business. Thus, the ability to present and explain their product in a manner that is understandable will result in efficient business decisions. Embedding security within a client’s product will ensure trust with the client and protect their end users. Attracting and retaining end users to a client’s product can best be done using UI and UX techniques, as well as using appropriate technical tools for specific problems.
 
 ## Project Overview
-This portfolio contains enhancements of an artifact from the *CS 360: Mobile Architecture and Programming* course at SNHU. Specifically, the artifact is an Android mobile application designed to help a fictional company in managing their warehouse inventory. Its selection was due to its full-stack development, which aligns well with my full-stack development career goal.
+This portfolio is the capstone of my Computer Science undergraduate degree at Southern New Hampshire University. It contains enhancements of an artifact from the *CS 360: Mobile Architecture and Programming*. Specifically, the artifact is an Android mobile application designed to help a fictional company in managing their warehouse inventory. Its selection was due to its full-stack development, which aligns well with my full-stack development career goal.
+
+<div width="100%" style="display: grid; grid-template-columns: 1fr; justify-items: center; margin: 0 1rem;">
+  <a href="/inventory-management" class="btn">View Project Enhancement</a>
+</div>
+
+The enhancements, per the requirements of my capstone, needed to satisfy five course outcomes (sourced by *CS499* at SNHU):
+
+1. Employ strategies for building collaborative environments that enable diverse audiences to support organizational decision making in the field of computer science
+
+2. Design, develop, and deliver professional-quality oral, written, and visual communications that are coherent, technically sound, and appropriately adapted to specific audiences and contexts
+
+3. Design and evaluate computing solutions that solve a given problem using algorithmic principles and computer science practices and standards appropriate to its solution, while managing the trade-offs involved in design choices
+
+4. Demonstrate an ability to use well-founded and innovative techniques, skills, and tools in computing practices for the purpose of implementing computer solutions that deliver value and accomplish industry-specific goals
+
+5. Develop a security mindset that anticipates adversarial exploits in software architecture and designs to expose potential vulnerabilities, mitigate design flaws, and ensure privacy and enhanced security of data and resources
 
 At a high level, the artifact has been transitioned from an Android-only application to a web-based application. Not only was the technology stack updated to support this change, but the software architecture was improved as well. Usability features, such as searching for specific items in the inventory, has been integrated into the project, which were lacking in the original artifact. A review of the artifact and its planned enhancements can be viewed in the video below.
 
-<div width="100%" style="display: grid; grid-template-columns: 1fr; justify-items: center; margin: 0 1rem;">
+<div width="100%" style="display: grid; grid-template-columns: 1fr; justify-items: center; margin-top: 1rem; margin-bottom: 1rem;">
   <iframe 
     width="80%"
     style="aspect-ratio: 800 / 450; max-width: 600px;"
@@ -97,17 +109,6 @@ beforeAll(() => {
 // Begin testing database features
 it(...);
 ```
-
-## Course Outcomes
-1. Employ strategies for building collaborative environments that enable diverse audiences to support organizational decision making in the field of computer science
-
-2. Design, develop, and deliver professional-quality oral, written, and visual communications that are coherent, technically sound, and appropriately adapted to specific audiences and contexts
-
-3. Design and evaluate computing solutions that solve a given problem using algorithmic principles and computer science practices and standards appropriate to its solution, while managing the trade-offs involved in design choices
-
-4. Demonstrate an ability to use well-founded and innovative techniques, skills, and tools in computing practices for the purpose of implementing computer solutions that deliver value and accomplish industry-specific goals
-
-5. Develop a security mindset that anticipates adversarial exploits in software architecture and designs to expose potential vulnerabilities, mitigate design flaws, and ensure privacy and enhanced security of data and resources
 
 ## References
 - *Pinia.* (2026). Pinia. https://pinia.vuejs.org/
