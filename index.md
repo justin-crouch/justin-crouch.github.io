@@ -2,6 +2,24 @@
 layout: default
 ---
 
+My journey in the Computer Science program began at Louisiana Tech University in 2018. I separated from the program at the start of 2020 to pursue a calling in the United States Army. Gladly, I picked up my program again at the end of June 2024, six months after leaving the Army, and was determined to complete my degree in August of 2026.
+
+This program has brought me invaluable knowledge. To begin, Agile development has transformed not only how I develop code, but how I run my development studio and personal life as well, especially with the use of Kanban boards to plan and track tasks. When I develop software and other studio products, rapid prototyping with feedback has improved the overall quality of these products. Finally, after learning how to create UI/UX designs that actually bring value to the customer, I have been able to build better designs faster.
+
+With my enhancements, I aim to demonstrate the following diverse set of skills that align with the field of Computer Science: 
+- ***Collaboration***: Skillfully utilizing GitHub with a proper README to publicly host and document these enhancements, plus creating various UML diagrams, opens a path to a collaborative environment for scientists, researchers, and other audiences to engage with.
+
+- ***Communication***: Applying UI and UX best practices will help to demonstrate these enhancements in a manner that suites a variety of audiences.
+
+- ***Data Structures & Algorithms***: Analyzing specific data structures will aid in selecting the best techniques and most appropriate algorithms to solve specific problems.
+
+- ***Software Engineering & Databases***: Utilizing an appropriate database and designing a fitting schema that provides value will demonstrate the ability to implement suitable technical solutions.
+
+- ***Security***: Following the principles of Object Oriented Programming, such as encapsulation and abstraction, as well as best security practices, such as encryption at rest, will strengthen data integrity and mitigate potential security vulnerabilities.
+
+These skills align well with my career plans, which is to develop full-stack software systems for clients. Effective communication with clients is critical for any business. Thus, the ability to present and explain their product in a manner that is understandable will result in efficient business decisions. Embedding security within a client’s product will ensure trust with the client and protect their end users. Attracting and retaining end users to a client’s product can best be done using UI and UX techniques, as well as using appropriate technical tools for specific problems.
+
+
 <div width="100%" style="display: grid; grid-template-columns: 1fr; justify-items: center;">
   <iframe 
     width="80%"
@@ -12,8 +30,6 @@ layout: default
     allowfullscreen> 
   </iframe> 
 </div>
-
-*Self Assessment*
 
 ## Artifact
 The artifact is from the CS 360: Mobile Architecture and Programming course. Specifically, this artifact is an Android mobile application designed to help a fictional company in managing their warehouse inventory. The artifact was selected due to its full-stack development, which aligns well with my full-stack development career goal.
