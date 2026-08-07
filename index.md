@@ -5,9 +5,10 @@ layout: default
 ### Table of Contents
 - *[Who Am I](#who-am-i)*
 - *[Project Overview](#project-overview)*
-- *(Algorithms and Data Structures)[#algorithms-and-data-structures]*
-- *(Database)[#database]*
-- *(References)[#references]*
+- *[Software Design and Engineering](#software-design-and-engineering)*
+- *[Algorithms and Data Structures](#algorithms-and-data-structures)*
+- *[Database](#database)*
+- *[References](#references)*
 
 ## Who Am I
 My journey in the Computer Science program began at Louisiana Tech University in 2018. I separated from the program at the start of 2020 to pursue a calling in the United States Army. Gladly, I picked up my program again at the end of June 2024, six months after leaving the Army, and was determined to complete my degree in August of 2026.
