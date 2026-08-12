@@ -16,7 +16,7 @@ My journey in the Computer Science program began at Louisiana Tech University in
 This program has brought me invaluable knowledge. To begin, Agile development has transformed not only how I develop code, but how I run my development studio and personal life as well, especially with the use of Kanban boards to plan and track tasks. When I develop software and other studio products, rapid prototyping with feedback has improved the overall quality of these products. Finally, after learning how to create UI/UX designs that actually bring value to the customer, I have been able to build better designs faster.
 
 With my enhancements, I aim to demonstrate the following diverse set of skills that align with the field of Computer Science: 
-- ***Collaboration***: Skillfully utilizing GitHub with a proper README to publicly host and document these enhancements, plus creating various UML diagrams, opening a path to a collaborative environment for scientists, researchers, and other audiences to engage with.
+- ***Collaboration***: Skillfully utilizing GitHub with a proper README to publicly host and document these enhancements, plus creating various [UML diagrams](https://github.com/justin-crouch/justin-crouch.github.io/tree/1a3ffc28f6b7bb6da5b278265302c55bd6f4c365/assets/UML%20Diagrams) and [wireframes](https://github.com/justin-crouch/justin-crouch.github.io/tree/1a3ffc28f6b7bb6da5b278265302c55bd6f4c365/assets/Wireframe), opening a path to a collaborative environment for scientists, researchers, and other audiences to engage with.
 
 - ***Communication***: Applying UI and UX best practices to help demonstrate these enhancements in a manner that suites a variety of audiences.
 
